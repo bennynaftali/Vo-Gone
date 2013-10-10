@@ -4,11 +4,14 @@ First Half is a scene.
 First Half begins when play begins.
 First Half ends when Nick is friendly.
 
-When play begins:
-	say "Another late night working on this lab in the CSL. No one else is here. You hear a thump coming from the southwest in the Mac Lab."
+When Play begins:
+	say "Another late night working on this lab in the CSL. No one else is here. You hear a thump coming from the southwest in the Mac Lab.[line break][line break] (Type in 'directions' at any time to view possible rooms)."
 	
-The CSL is a region. The Main Room, Admin Room, Rack Room, Coffee Room, 232B, and Mac Lab are rooms in the CSL.
-The Admin Room is north of the Main Room. The Mac Lab is southwest of the Main Room. 232B is northwest of the Main Room. The Coffee Room is northeast of the Main Room.
+The CSL is a region. The Main Room, Coffee Room, 232B, and Mac Lab are rooms in the CSL.
+The Mac Lab is southwest of the Main Room. 232B is northwest of the Main Room. The Coffee Room is northeast of the Main Room.
+
+HighPriority is a region. The Admin Room is a room in HighPriority. The Admin Room is north of the Main Room.
+NextLevel is a region. The Rack Room is a room in NextLevel.
 
 The RR door is east of the Main Room and west of the Rack Room. The RR door is a door. The RR door is lockable and locked. The RR door can be unlocked by the access card.
 
@@ -18,13 +21,20 @@ The Hallway is south of the Main Room. The Eastern Stairs are east of the Hallwa
 The Upstairs is a region. The Student Developer Lab 1, Student Developer Lab 2, Waiting Area, Room 301, Room 302, and Room 303 are rooms in the Upstairs.
 The Waiting Area is above the Western Stairs. The Waiting Area is above the Eastern Stairs. Room 301 is northwest of the Waiting Area. Room 302 is north of the Waiting Area. Room 303 is northeast of the Waiting Area. The Student Developer Lab 1 is southwest of the Waiting Area. The Student Developer Lab 2 is southeast of the Waiting Area.
 
-Going by name is an action applying to one thing. Understand "go to [any room]" as going by name.
+Asking for directions is an action applying to nothing. Understand "directions" as asking for directions.
+Carry out asking for directions:
+	repeat with R running through the list of adjacent rooms:
+		say "[R] is [best route from the location to the (R)][line break]".
 
+
+Going by name is an action applying to one thing. Understand "go to [any room]" as going by name.
 Carry out going by name:
 	if the noun is a room:
 		say "now going to... [noun]";
-		move the player to the noun.
-
+		move the player to the noun;
+	otherwise:
+		say "You can't go in there".
+		
 [talking]
 Understand "talk to [someone]" as talking to. Understand "talk to [something]" as talking to. Talking to is an action applying to one visible thing.  
 [end talking]
@@ -206,7 +216,7 @@ Carry out logging in:
 Instead of logging in during the first half:
 	say "No use working on your 357 project now, you have a murder to solve!";
 
-The Terminal is a room. The description of the Terminal is "From the unix [terminal] you can navigate through user files with standard unix commands."
+The Matrix is a region. The Terminal is a room in the Matrix. The description of the Terminal is "From the unix [terminal] you can navigate through user files with standard unix commands."
 
 A directory is a kind of container. The description of a directory is "Directories contain files and other directories." A directory is openable.
 
